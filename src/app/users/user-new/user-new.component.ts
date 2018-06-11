@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../users.service';
+import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-new',
@@ -9,23 +11,28 @@ import { UserService } from '../users.service';
 })
 export class UserNewComponent implements OnInit {
 
+  uid: string;
   @ViewChild('f') userForm: NgForm;
 
-  constructor(private usersService: UserService) { }
+  constructor(private usersService: UserService, private router: Router) { }
 
   ngOnInit() {
+    if (firebase.auth().currentUser) {
+      this.uid = firebase.auth().currentUser.uid;
+    } else {
+      this.router.navigate(['/signup']);
+    }
   }
 
   onSubmit() {
     this.usersService.createUser(
-      this.userForm.value.email,
-      this.userForm.value.password,
       this.userForm.value.age,
       this.userForm.value.fname,
       this.userForm.value.lname,
       this.userForm.value.city,
       this.userForm.value.state,
       this.userForm.value.gender,
+      this.uid
     );
     this.onClear();
   }

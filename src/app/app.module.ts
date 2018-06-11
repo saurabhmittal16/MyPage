@@ -8,8 +8,10 @@ import { UsersComponent } from './users/users.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { UserNewComponent } from './users/user-new/user-new.component';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './auth/signin/signin.component';
 import { UserService } from './users/users.service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,14 @@ import { UserService } from './users/users.service';
     HomeComponent,
     UserNewComponent,
     SigninComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
