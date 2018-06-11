@@ -35,7 +35,9 @@ export class UserNewComponent implements OnInit {
       this.uid
     );
     this.onClear();
+    this.router.navigate(['/users', this.uid]);
   }
+  
   onClear() {
     this.userForm.reset();
   }

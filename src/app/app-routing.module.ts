@@ -6,13 +6,15 @@ import { HomeComponent } from './home/home.component';
 import { UserNewComponent } from './users/user-new/user-new.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { UserViewComponent } from './users/user-view/user-view.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'signin', component: SigninComponent},
     {path: 'signup', component: SignupComponent},
     {path: 'users', component: UsersComponent, children: [
-        {path: 'new', component: UserNewComponent}
+        {path: 'new', component: UserNewComponent},
+        {path: ':id', component: UserViewComponent},
     ]}
 ];
 

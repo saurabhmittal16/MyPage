@@ -10,16 +10,21 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
+  errorMessage = '';
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onSignUp(form: NgForm) {
-    this.auth.onSignUp(
-      form.value.email,
-      form.value.password
-    );
-    this.router.navigate(['/users', 'new']);
+    this.auth.onSignUp(form.value.email, form.value.password)
+      .then(data => {
+        if (data === 1) {
+          this.errorMessage = '';
+          this.router.navigate(['/users', 'new']);
+        } else {
+          this.errorMessage = data;
+        }
+      });
   }
 }

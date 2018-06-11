@@ -8,4 +8,13 @@ export class UserService {
         this.users.push(tempUser);
         console.log(this.users);
     }
+
+    getUserByUID(uid: string) {
+        const user = this.users.find(
+            (temp: User) => {
+                return temp.uid === uid;
+            }
+        );
+        return user;
+    }
 }

@@ -1,11 +1,11 @@
 export class User {
-    private fname: string;
-    private lname: string;
-    private age: number;
-    private city: string;
-    private state: string;
-    private gender: string;
-    private uid: string;
+    public fname: string;
+    public lname: string;
+    public age: number;
+    public city: string;
+    public state: string;
+    public gender: string;
+    public uid: string;
 
     constructor(a, f, l, c, s, g, u) {
         this.age = a;
