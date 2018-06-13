@@ -1,6 +1,36 @@
-<p>{{ currentUser.fname }}</p>
-<p>{{ currentUser.lname }}</p>
-<p>{{ currentUser.age }}</p>
-<p>{{ currentUser.state }}</p>
-<p>{{ currentUser.city }}</p>
-<p>{{ currentUser.gender }}</p>
+<div class="row my-2">
+    <div class="col-lg-8 order-lg-2">
+        <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a href="" data-target="#requests" data-toggle="tab" class="nav-link">Requests</a>
+        </li>
+        <li class="nav-item">
+            <a href="" data-target="#friends" data-toggle="tab" class="nav-link">Friends</a>
+        </li>
+        </ul>
+        <div class="tab-content py-4">
+        <div class="tab-pane active" id="profile">
+            <h5 class="mb-3">User Profile</h5>
+            <div class="row">
+            <div class="col-md-6">
+                <h6>About</h6>
+                <p>{{ currentUser.fname }} {{ currentUser.lname }}</p>
+                <h6>Location</h6>
+                <p>{{ currentUser.city }}, {{ currentUser.state }}</p>
+            </div>
+            <div class="col-md-12">
+                <h5 class="mt-2">
+                <span class="fa fa-clock-o ion-clock float-right"></span> Friends</h5>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-lg-4 order-lg-1 text-center">
+        <img [src]="currentUser.img" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+        <h6 class="mt-2">{{ currentUser.fname }}</h6>
+    </div>
+</div>
