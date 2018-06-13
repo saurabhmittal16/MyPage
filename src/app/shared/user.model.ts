@@ -6,8 +6,9 @@ export class User {
     public state: string;
     public gender: string;
     public uid: string;
+    public img: string;
 
-    constructor(a, f, l, c, s, g, u) {
+    constructor(a, f, l, c, s, g, u, i) {
         this.age = a;
         this.fname = f;
         this.lname = l;
@@ -15,5 +16,6 @@ export class User {
         this.state = s;
         this.gender = g;
         this.uid = u;
+        this.img = i;
     }
 }

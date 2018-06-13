@@ -12,7 +12,14 @@ import { Router } from '@angular/router';
 export class UserNewComponent implements OnInit {
 
   uid: string;
+  selected = '../assets/Solid_gray.png';
   @ViewChild('f') userForm: NgForm;
+  paths = [
+    '../assets/1.png',
+    '../assets/2.png',
+    '../assets/3.png',
+    '../assets/5.png',
+  ];
 
   constructor(private usersService: UserService, private router: Router) { }
 
@@ -32,10 +39,15 @@ export class UserNewComponent implements OnInit {
       this.userForm.value.city,
       this.userForm.value.state,
       this.userForm.value.gender,
-      this.uid
+      this.uid,
+      this.selected
     );
     this.onClear();
     this.router.navigate(['/users', this.uid]);
+  }
+
+  onClick(path: string) {
+    this.selected = path;
   }
 
   onClear() {

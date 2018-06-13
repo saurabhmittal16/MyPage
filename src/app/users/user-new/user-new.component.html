@@ -1,4 +1,14 @@
-<form (ngSubmit)="onSubmit()" #f="ngForm" >
+<div>
+  <div class="row">
+    <div class="col-sm-8 col-xs-8">
+        <img *ngFor="let path of paths; let i = index" [src]="path" class="avatar" (click)="onClick(path)" name="avatar">
+    </div>
+    <div class="col-sm-4 col-xs-4">
+        <img [src]="selected" class="float-right" id="selected">
+    </div>
+  </div>
+</div>
+<form (ngSubmit)="onSubmit()" #f="ngForm">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="fname">First Name</label>

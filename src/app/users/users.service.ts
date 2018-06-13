@@ -14,14 +14,11 @@ export class UserService {
     }
 
     setUsers(users: User[]) {
-        if (!users) {
-            this.users = [];
-        }
         this.users = users;
     }
 
-    createUser(a, f, l, c, s, g, u) {
-        const tempUser = new User(a, f, l, c, s, g, u);
+    createUser(a, f, l, c, s, g, u, i) {
+        const tempUser = new User(a, f, l, c, s, g, u, i);
         this.users.push(tempUser);
         console.log(this.users);
         this.putData();
@@ -49,6 +46,10 @@ export class UserService {
             ))
             .subscribe(
                 (data) => {
+                    console.log(data);
+                    if (data === null) {
+                        data = [];
+                    }
                     this.setUsers(data);
                 }
             );
