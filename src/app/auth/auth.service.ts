@@ -12,4 +12,10 @@ export class AuthService {
             .then(data => 1)
             .catch(error => error.message);
     }
+
+    onSignIn(email: string, password: string) {
+        return firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(data => data)
+            .catch(error => error.message);
+    }
 }
