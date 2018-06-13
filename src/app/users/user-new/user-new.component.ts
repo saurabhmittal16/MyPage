@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../users.service';
 import * as firebase from 'firebase';
@@ -37,7 +37,7 @@ export class UserNewComponent implements OnInit {
     this.onClear();
     this.router.navigate(['/users', this.uid]);
   }
-  
+
   onClear() {
     this.userForm.reset();
   }

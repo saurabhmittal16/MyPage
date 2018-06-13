@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 
 import { default as data } from './shared/firebase';
+import { UserService } from './users/users.service';
 
 @Component({
   selector: 'app-root',

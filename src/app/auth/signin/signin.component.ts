@@ -23,7 +23,7 @@ export class SigninComponent implements OnInit {
           this.errorMessage = data;
         } else {
           this.errorMessage = 'Signing In';
-          this.router.navigate(['/users', data.user['uid']);
+          this.router.navigate(['/users', data.user['uid']]);
         }
       });
   }

@@ -13,6 +13,7 @@ import { UserService } from './users/users.service';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthService } from './auth/auth.service';
 import { UserViewComponent } from './users/user-view/user-view.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserViewComponent } from './users/user-view/user-view.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
   providers: [UserService, AuthService],
   bootstrap: [AppComponent]
