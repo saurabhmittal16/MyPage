@@ -32,9 +32,21 @@ export class UserViewComponent implements OnInit {
       }
     );
     this.activeUser = this.auth.currentUser;
+
+    if (this.activeUser.uid === this.currentUser.uid) {
+      this.currentUser = this.activeUser;
+    }
   }
 
   onAddFriend() {
-    console.log(`Friend request from ${this.activeUser.fname} to ${this.currentUser.fname}`);
+    this.userService.addRequest(this.activeUser.uid, this.currentUser.uid);
+  }
+
+  onAcceptRequest(request: string, index: number) {
+    this.userService.addFriend(request, index, this.activeUser.uid);
+  }
+
+  getUserName(uid: string) {
+    return this.userService.getUserNameByUID(uid);
   }
 }

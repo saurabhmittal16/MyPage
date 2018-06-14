@@ -2,6 +2,7 @@ import { User } from '../shared/user.model';
 import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -33,6 +34,29 @@ export class UserService {
         return user;
     }
 
+    getUserNameByUID(uid: string) {
+        const user = this.users.find(
+            (temp: User) => {
+                return temp.uid === uid;
+            }
+        );
+        return `${user.fname} ${user.lname}`;
+    }
+
+    addRequest(sender: string, receiver: string) {
+        const user = this.getUserByUID(receiver);
+        user.requests.push(sender);
+        this.putData();
+    }
+
+    addFriend(request: string, requestIndex: number, acceptor: string) {
+        const acceptingUser = this.getUserByUID(acceptor);
+        const senderUser = this.getUserByUID(request);
+        acceptingUser.friends.push(request);
+        senderUser.friends.push(acceptor);
+        acceptingUser.requests.splice(requestIndex, 1);
+        this.putData();
+    }
     putData() {
         this.http.put('https://ng-project-d6217.firebaseio.com/users.json', this.users).subscribe(
             response => console.log(response)

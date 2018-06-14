@@ -1,19 +1,8 @@
 <div class="row my-2">
   <div class="col-lg-8 order-lg-2">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a href="" data-target="#requests" data-toggle="tab" class="nav-link">Requests</a>
-      </li>
-      <li class="nav-item">
-        <a href="" data-target="#friends" data-toggle="tab" class="nav-link">Friends</a>
-      </li>
-    </ul>
     <div class="tab-content py-4">
-      <div class="tab-pane active" id="profile">
-        <h5 class="mb-3">User Profile</h5>
+      <div class="tab-pane active">
+        <h4 class="mb-3">User Profile</h4>
         <div class="row">
           <div class="col-md-6">
             <h6>About</h6>
@@ -25,6 +14,35 @@
         <button (click)="onAddFriend()" class="btn btn-primary" *ngIf="currentUser.uid !== activeUser.uid">
             Add Friend
         </button>
+        <div class="row" *ngIf="currentUser.uid === activeUser.uid">
+          <div class="col-md-12">
+            <h4>Requests</h4>
+            <ul class="list-group" *ngIf="currentUser.requests">
+              <li 
+                style="cursor: pointer;"
+                class="list-group-item" 
+                *ngFor="let request of currentUser.requests; let i = index" 
+              > 
+                {{ getUserName(request) }}
+                <button (click)="onAcceptRequest(request, i)">Accept</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Friends</h4>
+            <ul class="list-group" *ngIf="currentUser.friends">
+              <li 
+                style="cursor: pointer;"
+                class="list-group-item" 
+                *ngFor="let friend of currentUser.friends" 
+              > 
+                {{ getUserName(friend) }}
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
