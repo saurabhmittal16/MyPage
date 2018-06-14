@@ -14,6 +14,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthService } from './auth/auth.service';
 import { UserViewComponent } from './users/user-view/user-view.component';
 import { HttpModule } from '@angular/http';
+import { UserSearchComponent } from './users/user-search/user-search.component';
+import { FilterPipe } from './shared/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { HttpModule } from '@angular/http';
     SigninComponent,
     SignupComponent,
     UserViewComponent,
+    UserSearchComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

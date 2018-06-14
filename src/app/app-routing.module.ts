@@ -7,6 +7,7 @@ import { UserNewComponent } from './users/user-new/user-new.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UserViewComponent } from './users/user-view/user-view.component';
+import { UserSearchComponent } from './users/user-search/user-search.component';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
     {path: 'signup', component: SignupComponent},
     {path: 'users', component: UsersComponent, children: [
         {path: 'new', component: UserNewComponent},
+        {path: 'search', component: UserSearchComponent},
         {path: ':id', component: UserViewComponent},
     ]}
 ];

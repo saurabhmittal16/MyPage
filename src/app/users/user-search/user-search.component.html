@@ -1,0 +1,22 @@
+<div class="input-group mb-3">
+  <input 
+    type="text" 
+    class="form-control" 
+    placeholder="Search for people" 
+    aria-label="search" 
+    aria-describedby="basic-addon2"
+    [(ngModel)]="search">
+</div>
+<div *ngIf="search" class="alert alert-light" role="alert">
+  Search results for "{{ search }}"
+</div>
+<ul class="list-group">
+  <li 
+    style="cursor: pointer;"
+    class="list-group-item" 
+    *ngFor="let user of users | filter:search" 
+    [routerLink]="['/users', user.uid]"
+  > 
+    {{ user.fname }} {{ user.lname }}
+  </li>
+</ul>

@@ -1,0 +1,8 @@
+li:hover {
+    border: solid 1px blue;
+}
+
+li:active {
+    background-color: blue;
+    color: white;
+}
