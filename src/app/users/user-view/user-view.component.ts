@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../shared/user.model';
 import { ActivatedRoute } from '@angular/router';
+
+import { User } from '../../shared/user.model';
 import { UserService } from '../users.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-user-view',
@@ -11,8 +13,13 @@ import { UserService } from '../users.service';
 export class UserViewComponent implements OnInit {
   uid: string;
   currentUser: User;
+  activeUser: User = null;
 
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService,
+    private auth: AuthService
+  ) { }
 
   ngOnInit() {
     this.uid = this.route.snapshot.params['id'];
@@ -24,6 +31,10 @@ export class UserViewComponent implements OnInit {
         this.currentUser = this.userService.getUserByUID(this.uid);
       }
     );
+    this.activeUser = this.auth.currentUser;
   }
 
+  onAddFriend() {
+    console.log(`Friend request from ${this.activeUser.fname} to ${this.currentUser.fname}`);
+  }
 }

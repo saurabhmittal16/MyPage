@@ -18,7 +18,7 @@ export class UserService {
     }
 
     createUser(a, f, l, c, s, g, u, i) {
-        const tempUser = new User(a, f, l, c, s, g, u, i);
+        const tempUser = new User(a, f, l, c, s, g, u, i, [], []);
         this.users.push(tempUser);
         console.log(this.users);
         this.putData();
@@ -42,7 +42,18 @@ export class UserService {
     getData() {
         this.http.get('https://ng-project-d6217.firebaseio.com/users.json')
             .pipe(map(
-                (response: Response) => response.json()
+                (response: Response) => {
+                    const result = response.json();
+                    for (const user of result) {
+                        if (!user.requests) {
+                            user.requests = [];
+                        }
+                        if (!user.friends) {
+                            user.friends = [];
+                        }
+                    }
+                    return result;
+                }
             ))
             .subscribe(
                 (data) => {

@@ -7,8 +7,10 @@ export class User {
     public gender: string;
     public uid: string;
     public img: string;
+    public requests: string[];
+    public friends: string[];
 
-    constructor(a, f, l, c, s, g, u, i) {
+    constructor(a, f, l, c, s, g, u, i, r, friends) {
         this.age = a;
         this.fname = f;
         this.lname = l;
@@ -17,5 +19,7 @@ export class User {
         this.gender = g;
         this.uid = u;
         this.img = i;
+        this.requests = r;
+        this.friends = friends;
     }
 }
