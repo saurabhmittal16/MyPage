@@ -8,9 +8,17 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  currentUser;
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
+    this.auth.userChanged.subscribe(
+      (data) => {
+        if (data === null) {
+          this.currentUser = null;
+        }
+        this.currentUser = data;
+      }
   }
 
   onSignout() {
