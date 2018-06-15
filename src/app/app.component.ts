@@ -12,6 +12,6 @@ import { UserService } from './users/users.service';
 export class AppComponent implements OnInit {
 
   ngOnInit() {
-    firebase.initializeApp(data.key);
+    firebase.initializeApp(data.data);
   }
 }

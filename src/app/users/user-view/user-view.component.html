@@ -22,9 +22,10 @@
                 style="cursor: pointer;"
                 class="list-group-item" 
                 *ngFor="let request of currentUser.requests; let i = index" 
-              > 
+              >
+                <div id="acceptRequest" (click)="onAcceptRequest(request, i)">&#x2714;</div>
                 {{ getUserName(request) }}
-                <button (click)="onAcceptRequest(request, i)">Accept</button>
+                
               </li>
             </ul>
           </div>
