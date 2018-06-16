@@ -45,17 +45,23 @@ export class UserService {
 
     addRequest(sender: string, receiver: string) {
         const user = this.getUserByUID(receiver);
-        user.requests.push(sender);
-        this.putData();
+        if (!user.requests.includes(sender)) {
+            user.requests.push(sender);
+            this.putData();
+        }
     }
 
     addFriend(request: string, requestIndex: number, acceptor: string) {
         const acceptingUser = this.getUserByUID(acceptor);
         const senderUser = this.getUserByUID(request);
-        acceptingUser.friends.push(request);
-        senderUser.friends.push(acceptor);
-        acceptingUser.requests.splice(requestIndex, 1);
-        this.putData();
+
+        if (!(acceptingUser.friends.includes(request) || senderUser.friends.includes(acceptor))) {
+            acceptingUser.friends.push(request);
+            senderUser.friends.push(acceptor);
+            acceptingUser.requests.splice(requestIndex, 1);
+            this.putData();
+        }
+
     }
     putData() {
         this.http.put('https://ng-project-d6217.firebaseio.com/users.json', this.users).subscribe(

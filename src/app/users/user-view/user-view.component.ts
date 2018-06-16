@@ -44,9 +44,22 @@ export class UserViewComponent implements OnInit {
 
   onAcceptRequest(request: string, index: number) {
     this.userService.addFriend(request, index, this.activeUser.uid);
+    this.onReload();
   }
 
   getUserName(uid: string) {
     return this.userService.getUserNameByUID(uid);
+  }
+
+  displayBtn() {
+    if (this.currentUser.uid !== this.activeUser.uid && !this.activeUser.friends.includes(this.currentUser.uid)) {
+      return true;
+    }
+    return false;
+  }
+
+  onReload() {
+    this.userService.getData();
+    this.currentUser = this.userService.getUserByUID(this.uid);
   }
 }

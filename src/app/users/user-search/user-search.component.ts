@@ -15,5 +15,4 @@ export class UserSearchComponent implements OnInit {
   ngOnInit() {
     this.users = this.usersService.getUsers();
   }
-
 }
