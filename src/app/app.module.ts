@@ -16,6 +16,8 @@ import { UserViewComponent } from './users/user-view/user-view.component';
 import { HttpModule } from '@angular/http';
 import { UserSearchComponent } from './users/user-search/user-search.component';
 import { FilterPipe } from './shared/filter.pipe';
+import { UserPostComponent } from './users/user-post/user-post.component';
+import { UserPostNewComponent } from './users/user-post-new/user-post-new.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { FilterPipe } from './shared/filter.pipe';
     SignupComponent,
     UserViewComponent,
     UserSearchComponent,
-    FilterPipe
+    FilterPipe,
+    UserPostComponent,
+    UserPostNewComponent
   ],
   imports: [
     BrowserModule,

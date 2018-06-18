@@ -1,0 +1,6 @@
+<h4>User posts</h4>
+<button class="btn btn-success" [routerLink]="['posts', 'new']">Add Post</button>
+
+<ul class="list-group-flush">
+    <li class="list-group-item" *ngFor="let post of posts"> {{ post }} </li>
+</ul>

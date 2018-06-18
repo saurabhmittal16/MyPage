@@ -19,7 +19,7 @@ export class UserService {
     }
 
     createUser(a, f, l, c, s, g, u, i) {
-        const tempUser = new User(a, f, l, c, s, g, u, i, [], []);
+        const tempUser = new User(a, f, l, c, s, g, u, i, [], [], []);
         this.users.push(tempUser);
         console.log(this.users);
         this.putData();
@@ -80,6 +80,9 @@ export class UserService {
                         }
                         if (!user.friends) {
                             user.friends = [];
+                        }
+                        if (!user.posts) {
+                            user.posts = [];
                         }
                     }
                     return result;

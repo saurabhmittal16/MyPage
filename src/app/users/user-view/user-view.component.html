@@ -16,6 +16,9 @@
             <button  *ngIf="currentUser.uid === activeUser.uid" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#requests" aria-expanded="false" aria-controls="requests" (click)="toggleCollapse(requests)">
               <i class="fa fa-user-plus" aria-hidden="true"></i>        
             </button>
+            <button class="btn btn-primary" (click)="toggleCollapse(posts)">
+              Posts
+            </button>
           </div>
       </div>
     </div>
@@ -71,6 +74,12 @@
               </p>
             </div>
           </div>
+        </li>
+      </div>
+
+      <div class="collapse" id="posts" #posts>
+        <li class="list-group-item">
+          <app-user-post [currentUser]="currentUser"></app-user-post>
         </li>
       </div>
 
