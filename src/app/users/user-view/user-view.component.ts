@@ -40,6 +40,7 @@ export class UserViewComponent implements OnInit {
 
   onAddFriend() {
     this.userService.addRequest(this.activeUser.uid, this.currentUser.uid);
+    this.onReload();
   }
 
   onAcceptRequest(request: string, index: number) {
@@ -61,5 +62,13 @@ export class UserViewComponent implements OnInit {
   onReload() {
     this.userService.getData();
     this.currentUser = this.userService.getUserByUID(this.uid);
+  }
+
+  toggleCollapse(div: HTMLDivElement) {
+    if (div.classList.length === 1) {
+      div.classList.add('show');
+    } else {
+      div.classList.remove('show');
+    }
   }
 }

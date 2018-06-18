@@ -1,53 +1,84 @@
 <div class="row my-2">
-  <div class="col-lg-8 order-lg-2">
-    <div class="tab-content py-4">
-      <div class="tab-pane active">
-        <h4 class="mb-3">User Profile<button (click)="onReload()">Reload</button></h4>
-        <div class="row">
-          <div class="col-md-6">
-            <h6>About</h6>
-            <p>{{ currentUser.fname }} {{ currentUser.lname }}</p>
-            <h6>Location</h6>
-            <p>{{ currentUser.city }}, {{ currentUser.state }}</p>
+  <div class="col-md-8 col-xs-8">
+    
+    <div class="row">
+      <div class="col-md-8 col-xs-8">
+          <h2 class="mb-3">User Profile</h2>
+      </div>
+      <div class="col-md-4 col-xs-4">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button class="btn btn-primary" (click)="onReload()">
+              <i class="fa fa-refresh"></i>
+            </button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#friends" aria-expanded="false" aria-controls="friends" (click)="toggleCollapse(friends)">
+              <i class="fa fa-users" aria-hidden="true"></i>
+            </button>
+            <button  *ngIf="currentUser.uid === activeUser.uid" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#requests" aria-expanded="false" aria-controls="requests" (click)="toggleCollapse(requests)">
+              <i class="fa fa-user-plus" aria-hidden="true"></i>        
+            </button>
           </div>
-        </div>
-        <button (click)="onAddFriend()" class="btn btn-primary" *ngIf="displayBtn()">
-            Add Friend
-        </button>
-        <div class="row" *ngIf="currentUser.uid === activeUser.uid">
-          <div class="col-md-12">
-            <h4>Requests</h4>
-            <ul class="list-group" *ngIf="currentUser.requests">
-              <li 
-                style="cursor: pointer;"
-                class="list-group-item" 
-                *ngFor="let request of currentUser.requests; let i = index" 
-              >
-                <div id="acceptRequest" (click)="onAcceptRequest(request, i)">&#x2714;</div>
-                {{ getUserName(request) }}
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h4>Friends</h4>
-            <ul class="list-group" *ngIf="currentUser.friends">
-              <li 
-                style="cursor: pointer;"
-                class="list-group-item" 
-                *ngFor="let friend of currentUser.friends" 
-              > 
-                {{ getUserName(friend) }}
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
+
+    <ul class="list-group list-group-flush">
+
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>About</h4>
+            <span>{{ currentUser.fname }} {{ currentUser.lname }}</span>
+            <h4>Location</h4>
+            <span>{{ currentUser.city }}, {{ currentUser.state }}</span>
+          </div>
+        </div>
+        <button (click)="onAddFriend()" class="btn btn-primary" id="addFriend" *ngIf="displayBtn()">
+          Add Friend
+        </button>
+      </li>
+
+     
+      <div class="collapse" id="requests" #requests>
+        <li class="list-group-item">
+          <div class="row" *ngIf="currentUser.uid === activeUser.uid">
+            <div class="col-md-12">
+              <h4>Requests</h4>
+              <ul class="list-group" *ngIf="currentUser.requests.length > 0">
+                <li style="cursor: pointer;" class="list-group-item" *ngFor="let request of currentUser.requests; let i = index">
+                  <div id="acceptRequest" (click)="onAcceptRequest(request, i)">&#x2714;</div>
+                  {{ getUserName(request) }}
+                </li>
+              </ul>
+              <p *ngIf="currentUser.requests.length === 0">
+                No new friends requests
+              </p>
+            </div>
+          </div>
+        </li>
+      </div>
+
+      <div class="collapse" id="friends" #friends>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Friends</h4>
+              <ul class="list-group"*ngIf="currentUser.friends.length > 0">
+                <li style="cursor: pointer;" class="list-group-item" *ngFor="let friend of currentUser.friends">
+                  {{ getUserName(friend) }}
+                </li>
+              </ul>
+              <p *ngIf="currentUser.friends.length === 0">              
+                No friends
+              </p>
+            </div>
+          </div>
+        </li>
+      </div>
+
+    </ul>
   </div>
-  <div class="col-lg-4 order-lg-1 text-center">
-    <img [src]="currentUser.img" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+  
+  <div class="col-md-4 col-xs-4 text-center">
+    <img [src]="currentUser.img" class="mx-auto img-fluid img-circle d-block" alt="avatar" id="profile">
     <h6 class="mt-2">{{ currentUser.fname }}</h6>
   </div>
 </div>
