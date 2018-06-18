@@ -9,7 +9,7 @@ import { User } from '../../shared/user.model';
 export class UserPostComponent implements OnInit {
 
   @Input() currentUser: User;
-  posts: string[];
+  posts;
 
   constructor() { }
 
@@ -17,4 +17,11 @@ export class UserPostComponent implements OnInit {
     this.posts = this.currentUser.posts;
   }
 
+  toggleCollapse(div: HTMLDivElement) {
+    if (div.classList.length === 1) {
+      div.classList.add('show');
+    } else {
+      div.classList.remove('show');
+    }
+  }
 }

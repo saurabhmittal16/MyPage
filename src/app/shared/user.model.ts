@@ -9,7 +9,7 @@ export class User {
     public img: string;
     public requests: string[];
     public friends: string[];
-    public posts: string[];
+    public posts: {content: string, timestamp: string}[];
 
     constructor(a, f, l, c, s, g, u, i, r, friends, posts) {
         this.age = a;

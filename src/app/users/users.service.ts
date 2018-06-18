@@ -2,7 +2,6 @@ import { User } from '../shared/user.model';
 import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -63,6 +62,16 @@ export class UserService {
         }
 
     }
+
+    addPost(uid: string, content: string, date: string) {
+        const user = this.getUserByUID(uid);
+        user.posts.push({
+            content: content,
+            timestamp: date
+        });
+        this.putData();
+    }
+
     putData() {
         this.http.put('https://ng-project-d6217.firebaseio.com/users.json', this.users).subscribe(
             response => console.log(response)
