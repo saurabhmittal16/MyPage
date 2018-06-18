@@ -1,9 +1,10 @@
-<form #f="ngForm" (ngSubmit)="onSubmit()">
-  <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="content">Write Something</label>
-      <textarea class="form-control" name="content" id="content" ngModel required></textarea>
+<div style="margin-top: 10px">
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <textarea class="form-control" name="content" id="content" ngModel required></textarea>
+      </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>  
+</div>

@@ -10,6 +10,9 @@
             <button class="btn btn-primary" (click)="onReload()">
               <i class="fa fa-refresh"></i>
             </button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#about" aria-expanded="false" aria-controls="about" (click)="toggleCollapse(about)">
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </button>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#friends" aria-expanded="false" aria-controls="friends" (click)="toggleCollapse(friends)">
               <i class="fa fa-users" aria-hidden="true"></i>
             </button>
@@ -23,30 +26,49 @@
       </div>
     </div>
 
-    <ul class="list-group list-group-flush">
+    <ul class="list-group">
 
-      <li class="list-group-item">
-        <div class="row">
-          <div class="col-md-12">
-            <h4>About</h4>
-            <span>{{ currentUser.fname }} {{ currentUser.lname }}</span>
-            <h4>Location</h4>
-            <span>{{ currentUser.city }}, {{ currentUser.state }}</span>
+      <div class="collapse show" id="about" #about>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>About</h4>
+              <span>{{ currentUser.fname }} {{ currentUser.lname }}</span>
+              <h4>Location</h4>
+              <span>{{ currentUser.city }}, {{ currentUser.state }}</span>
+            </div>
           </div>
-        </div>
-        <button (click)="onAddFriend()" class="btn btn-primary" id="addFriend" *ngIf="displayBtn()">
-          Add Friend
-        </button>
-      </li>
-
-     
+          <button (click)="onAddFriend()" class="btn btn-primary" id="addFriend" *ngIf="displayBtn()">
+            Add Friend
+          </button>
+        </li>
+      </div>
+      
+      <div class="collapse" id="friends" #friends>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Friends</h4>
+              <ul class="list-group"*ngIf="currentUser.friends.length > 0">
+                <li style="cursor: pointer;" class="list-group-item my-list-item" *ngFor="let friend of currentUser.friends">
+                  {{ getUserName(friend) }}
+                </li>
+              </ul>
+              <p *ngIf="currentUser.friends.length === 0">              
+                No friends
+              </p>
+            </div>
+          </div>
+        </li>
+      </div>
+      
       <div class="collapse" id="requests" #requests>
         <li class="list-group-item">
           <div class="row" *ngIf="currentUser.uid === activeUser.uid">
             <div class="col-md-12">
               <h4>Requests</h4>
               <ul class="list-group" *ngIf="currentUser.requests.length > 0">
-                <li style="cursor: pointer;" class="list-group-item" *ngFor="let request of currentUser.requests; let i = index">
+                <li style="cursor: pointer;" class="list-group-item my-list-item" *ngFor="let request of currentUser.requests; let i = index">
                   <div id="acceptRequest" (click)="onAcceptRequest(request, i)">&#x2714;</div>
                   {{ getUserName(request) }}
                 </li>
@@ -58,25 +80,7 @@
           </div>
         </li>
       </div>
-
-      <div class="collapse" id="friends" #friends>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-12">
-              <h4>Friends</h4>
-              <ul class="list-group"*ngIf="currentUser.friends.length > 0">
-                <li style="cursor: pointer;" class="list-group-item" *ngFor="let friend of currentUser.friends">
-                  {{ getUserName(friend) }}
-                </li>
-              </ul>
-              <p *ngIf="currentUser.friends.length === 0">              
-                No friends
-              </p>
-            </div>
-          </div>
-        </li>
-      </div>
-
+      
       <div class="collapse" id="posts" #posts>
         <li class="list-group-item">
           <app-user-post [currentUser]="currentUser"></app-user-post>

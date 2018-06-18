@@ -18,3 +18,12 @@
 #addFriend {
     margin-top: 15px;
 }
+
+.my-list-item {
+    border: solid 1px white;
+    background: lightcyan;
+}
+
+.list-group-item {
+    margin-bottom: 10px;
+}

@@ -1,14 +1,26 @@
-<h4>User posts</h4>
-<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#new" aria-expanded="false" aria-controls="friends" (click)="toggleCollapse(new)">
-    +
-</button>
-
-<div class="collapse" id="new" #new>
-    <app-user-post-new [currentUser]="currentUser"></app-user-post-new>
+<div class="row">
+    <div class="col-md-10">
+        <h4>User posts</h4>
+    </div>
+    <div class="col-md-2 col-offset-md-1">
+        <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#new" aria-expanded="false" aria-controls="friends" (click)="toggleCollapse(new)">
+            New
+        </button> 
+    </div>
 </div>
 
-<ul class="list-group-flush">
-    <li class="list-group-item" *ngFor="let post of posts">
-        <span>{{ post.timestamp }}</span> - {{ post.content }}
+<div class="row" style="margin-bottom: 15px">
+    <div class="col-md-12">
+       <div class="collapse" id="new" #new>
+            <app-user-post-new [currentUser]="currentUser"></app-user-post-new>
+        </div> 
+    </div>
+</div>
+
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let post of posts" style="margin-bottom: 8px">
+        <div id="date"><em>{{ post.timestamp }}</em></div>
+        <hr>
+        <div id="text">{{ post.content }}</div>
     </li>
 </ul>
