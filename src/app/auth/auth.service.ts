@@ -59,7 +59,7 @@ export class AuthService {
     }
 
     isAuthenticated() {
-        if (this.token != null) {
+        if (this.currentUser) {
             return true;
         }
         return false;

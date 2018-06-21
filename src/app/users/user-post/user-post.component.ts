@@ -19,6 +19,10 @@ export class UserPostComponent implements OnInit {
     this.posts = this.currentUser.posts;
   }
 
+  isAllowed() {
+    return this.currentUser.uid === this.activeUser.uid;
+  }
+
   toggleCollapse(div: HTMLDivElement) {
     if (div.classList.length === 1) {
       div.classList.add('show');

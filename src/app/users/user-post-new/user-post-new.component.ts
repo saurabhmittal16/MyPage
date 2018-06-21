@@ -22,5 +22,6 @@ export class UserPostNewComponent implements OnInit {
   onSubmit() {
     const date = new Date();
     this.userService.addPost(this.currentUser.uid, this.form.value['content'], String(date));
+    this.form.reset();
   }
 }
