@@ -29,4 +29,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onSignout() {
     this.auth.onSignOut();
   }
+  toggleNav(div: HTMLDivElement) {
+    if (div.classList.length === 2) {
+      div.classList.add('show');
+    } else {
+      div.classList.remove('show');
+    }
+  }
 }

@@ -53,7 +53,11 @@ export class UserViewComponent implements OnInit {
   }
 
   displayBtn() {
-    if (this.currentUser.uid !== this.activeUser.uid && !this.activeUser.friends.includes(this.currentUser.uid)) {
+    if (
+        this.currentUser.uid !== this.activeUser.uid &&
+        !this.activeUser.friends.includes(this.currentUser.uid) &&
+        !this.activeUser.requests.includes(this.currentUser.uid)
+      ) {
       return true;
     }
     return false;
