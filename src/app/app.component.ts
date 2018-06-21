@@ -11,7 +11,10 @@ import { UserService } from './users/users.service';
 })
 export class AppComponent implements OnInit {
 
+  constructor(private userService: UserService) {}
+
   ngOnInit() {
     firebase.initializeApp(data.data);
+    this.userService.getData();
   }
 }

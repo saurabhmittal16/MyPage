@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class AuthService {
     token = '';
-    currentUser: User;
+    currentUser: User = null;
     userChanged = new Subject<User>();
 
     constructor(private router: Router, private userService: UserService) {}
@@ -53,6 +53,7 @@ export class AuthService {
     onSignOut() {
         firebase.auth().signOut();
         this.token = null;
+        this.currentUser = null;
         this.userChanged.next(null);
         this.router.navigate(['/']);
     }

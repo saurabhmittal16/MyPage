@@ -9,10 +9,9 @@ import { UserService } from '../users/users.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private usersService: UserService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.usersService.getData();
   }
 
   onRegister() {
