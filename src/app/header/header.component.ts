@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
 
@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentUser;
   userChangeSubscription: Subscription;
+  @ViewChild('nav') dropdown;
+
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
@@ -29,7 +31,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onSignout() {
     this.auth.onSignOut();
   }
-  toggleNav(div: HTMLDivElement) {
+
+  toggleNav() {
+    const div = this.dropdown.nativeElement;
     if (div.classList.length === 2) {
       div.classList.add('show');
     } else {

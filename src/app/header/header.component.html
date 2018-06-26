@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" [routerLink]="['/']">My Project</a>
+  <a class="navbar-brand" [routerLink]="['/']">My Page</a>
   <button 
     class="navbar-toggler" 
     type="button" 
@@ -8,12 +8,12 @@
     aria-controls="navbarNavDropdown" 
     aria-expanded="false" 
     aria-label="Toggle navigation"
-    (click)="toggleNav(navbarDropdown)"
+    (click)="toggleNav()"
   >
     <span class="navbar-toggler-icon"></span>
   </button>
   <ng-template [ngIf]="currentUser">
-    <div class="collapse navbar-collapse" #navbarDropdown>
+    <div class="collapse navbar-collapse" #nav>
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" style="cursor: pointer;" [routerLink]="['/users/search']">Search</a>
