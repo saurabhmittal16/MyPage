@@ -8,7 +8,6 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UserViewComponent } from './users/user-view/user-view.component';
 import { UserSearchComponent } from './users/user-search/user-search.component';
-import { AuthGuard } from './auth/auth.guard';
 
 const appRoutes: Routes = [
     {path: '', component: HomeComponent},
