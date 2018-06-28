@@ -18,7 +18,6 @@ import { UserSearchComponent } from './users/user-search/user-search.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { UserPostComponent } from './users/user-post/user-post.component';
 import { UserPostNewComponent } from './users/user-post-new/user-post-new.component';
-import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -41,7 +40,7 @@ import { AuthGuard } from './auth/auth.guard';
     AppRoutingModule,
     HttpModule
   ],
-  providers: [UserService, AuthService, AuthGuard],
+  providers: [UserService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

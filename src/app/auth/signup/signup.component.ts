@@ -19,8 +19,9 @@ export class SignupComponent implements OnInit {
   onSignUp(form: NgForm) {
     this.auth.onSignUp(form.value.email, form.value.password)
       .then(data => {
+        console.log(data);
         if (data === 1) {
-          this.errorMessage = '';
+          this.errorMessage = 'Registering';
           this.router.navigate(['/users', 'new']);
         } else {
           this.errorMessage = data;

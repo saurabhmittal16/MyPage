@@ -15,9 +15,9 @@ const appRoutes: Routes = [
     {path: 'signin', component: SigninComponent},
     {path: 'signup', component: SignupComponent},
     {path: 'users', component: UsersComponent, children: [
-        {path: 'new', component: UserNewComponent, canActivate: [AuthGuard]},
-        {path: 'search', component: UserSearchComponent, canActivate: [AuthGuard]},
-        {path: ':id', component: UserViewComponent, canActivate: [AuthGuard]},
+        {path: 'new', component: UserNewComponent},
+        {path: 'search', component: UserSearchComponent},
+        {path: ':id', component: UserViewComponent},
     ]}
 ];
 
