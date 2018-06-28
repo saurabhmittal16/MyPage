@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { User } from '../../shared/user.model';
 import { UserService } from '../users.service';
 import { AuthService } from '../../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-view',
   templateUrl: './user-view.component.html',
   styleUrls: ['./user-view.component.css']
 })
-export class UserViewComponent implements OnInit {
+export class UserViewComponent implements OnInit, OnDestroy {
   uid: string;
   currentUser: User;
   activeUser: User = null;
+  activeUserSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,20 +24,16 @@ export class UserViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.uid = this.route.snapshot.params['id'];
-    this.currentUser = this.userService.getUserByUID(this.uid);
-
     this.route.params.subscribe(
       (params) => {
         this.uid = params['id'];
+        console.log(this.uid);
         this.currentUser = this.userService.getUserByUID(this.uid);
+        console.log(this.currentUser);
       }
     );
     this.activeUser = this.auth.currentUser;
-
-    if (this.activeUser.uid === this.currentUser.uid) {
-      this.currentUser = this.activeUser;
-    }
+    console.log(this.activeUser);
   }
 
   onAddFriend() {
@@ -74,5 +72,8 @@ export class UserViewComponent implements OnInit {
     } else {
       div.classList.remove('show');
     }
+  }
+  ngOnDestroy() {
+    // this.activeUserSub.unsubscribe();
   }
 }

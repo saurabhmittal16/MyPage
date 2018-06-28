@@ -7,7 +7,6 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-    token = '';
     currentUser: User = null;
     userChanged = new Subject<User>();
 
@@ -15,20 +14,7 @@ export class AuthService {
 
     onSignUp(email: string, password: string) {
         return firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(
-                (data) => {
-                    firebase.auth().currentUser.getIdToken()
-                        .then(
-                            (token) => {
-                                this.token = token;
-                                console.log(token);
-                            }
-                        );
-                    this.currentUser = this.userService.getUserByUID(firebase.auth().currentUser.uid);
-                    this.userChanged.next(this.currentUser);
-                    return 1;
-                }
-            )
+            .then(data => 1)
             .catch(error => error.message);
     }
 
@@ -36,12 +22,6 @@ export class AuthService {
         return firebase.auth().signInWithEmailAndPassword(email, password)
             .then(
                 (data) => {
-                    firebase.auth().currentUser.getIdToken()
-                        .then(
-                            (token) => {
-                                this.token = token;
-                            }
-                        );
                     this.currentUser = this.userService.getUserByUID(firebase.auth().currentUser.uid);
                     this.userChanged.next(this.currentUser);
                     return data;
@@ -52,10 +32,14 @@ export class AuthService {
 
     onSignOut() {
         firebase.auth().signOut();
-        this.token = null;
         this.currentUser = null;
         this.userChanged.next(null);
         this.router.navigate(['/']);
+    }
+
+    afterRegistered() {
+        this.currentUser = this.userService.getUserByUID(firebase.auth().currentUser.uid);
+        this.userChanged.next(this.currentUser);
     }
 
     isAuthenticated() {

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UserService } from '../users.service';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-user-new',
@@ -21,7 +22,7 @@ export class UserNewComponent implements OnInit {
     '../assets/5.png',
   ];
 
-  constructor(private usersService: UserService, private router: Router) { }
+  constructor(private usersService: UserService, private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
     if (firebase.auth().currentUser) {
@@ -43,6 +44,7 @@ export class UserNewComponent implements OnInit {
       this.selected
     );
     this.onClear();
+    this.auth.afterRegistered();
     this.router.navigate(['/users', this.uid]);
   }
 
