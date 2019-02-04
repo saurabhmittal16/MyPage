@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 
-import { default as data } from './shared/firebase';
+import { key } from './shared/firebase';
 import { UserService } from './users/users.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    firebase.initializeApp(data.data);
+    firebase.initializeApp(key);
     this.userService.getData();
   }
 }
