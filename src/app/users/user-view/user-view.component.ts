@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class UserViewComponent implements OnInit, OnDestroy {
   uid: string;
-  currentUser: User;
+  currentUser: User = null;
   activeUser: User = null;
   activeUserSub: Subscription;
 
@@ -27,13 +27,23 @@ export class UserViewComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(
       (params) => {
         this.uid = params['id'];
-        console.log(this.uid);
-        this.currentUser = this.userService.getUserByUID(this.uid);
-        console.log(this.currentUser);
+
+        this.userService.allUsers.subscribe(
+          users => {
+            this.currentUser = this.userService.getUserByUID(this.uid);
+            console.log('Current User', this.currentUser);
+          }
+        );
       }
     );
-    this.activeUser = this.auth.currentUser;
-    console.log(this.activeUser);
+
+    this.activeUserSub = this.auth.userChanged.subscribe(
+      user => {
+        this.activeUser = user;
+        console.log('Active User', this.activeUser);
+      }
+    );
+
   }
 
   onAddFriend() {

@@ -2,10 +2,12 @@ import { User } from '../shared/user.model';
 import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class UserService {
     private users: User[] = [];
+    allUsers = new Subject <User[]>();
 
     constructor(private http: Http) {}
 
@@ -15,6 +17,7 @@ export class UserService {
 
     setUsers(users: User[]) {
         this.users = users;
+        this.allUsers.next(this.users);
     }
 
     createUser(a, f, l, c, s, g, u, i) {

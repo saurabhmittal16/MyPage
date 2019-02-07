@@ -44,8 +44,9 @@ export class AuthService {
         }
     }
 
-    onSignOut() {
-        firebase.auth().signOut();
+    async onSignOut() {
+        await this.afAuth.auth.signOut();
+        localStorage.removeItem('user');
         this.currentUser = null;
         this.userChanged.next(null);
         this.router.navigate(['/']);
@@ -56,10 +57,7 @@ export class AuthService {
         this.userChanged.next(this.currentUser);
     }
 
-    isAuthenticated() {
-        if (this.currentUser) {
-            return true;
-        }
-        return false;
+    isAuthenticated(): Boolean {
+        return !!this.currentUser;
     }
 }
