@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +20,8 @@ import { UserSearchComponent } from './users/user-search/user-search.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { UserPostComponent } from './users/user-post/user-post.component';
 import { UserPostNewComponent } from './users/user-post-new/user-post-new.component';
+
+import { config } from './shared/firebase';
 
 @NgModule({
   declarations: [
@@ -37,8 +41,10 @@ import { UserPostNewComponent } from './users/user-post-new/user-post-new.compon
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     AppRoutingModule,
-    HttpModule
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule
   ],
   providers: [UserService, AuthService],
   bootstrap: [AppComponent]

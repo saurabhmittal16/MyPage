@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    firebase.initializeApp(key);
+    // firebase.initializeApp(key);
     this.userService.getData();
   }
 }
