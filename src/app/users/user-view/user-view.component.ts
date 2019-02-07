@@ -25,11 +25,11 @@ export class UserViewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.currentUser = this.userService.getUserByUID(this.uid);
-    this.activeUser = this.auth.currentUser;
     this.route.params.subscribe(
       (params) => {
         this.uid = params['id'];
+        this.currentUser = this.userService.getUserByUID(this.uid);
+        this.activeUser = this.auth.currentUser;
         this.allUsersSub = this.userService.allUsers.subscribe(
           users => {
             this.currentUser = this.userService.getUserByUID(this.uid);
