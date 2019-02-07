@@ -16,6 +16,7 @@ export class UserViewComponent implements OnInit, OnDestroy {
   currentUser: User = null;
   activeUser: User = null;
   activeUserSub: Subscription;
+  allUsersSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,11 +25,12 @@ export class UserViewComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.currentUser = this.userService.getUserByUID(this.uid);
+    this.activeUser = this.auth.currentUser;
     this.route.params.subscribe(
       (params) => {
         this.uid = params['id'];
-
-        this.userService.allUsers.subscribe(
+        this.allUsersSub = this.userService.allUsers.subscribe(
           users => {
             this.currentUser = this.userService.getUserByUID(this.uid);
             console.log('Current User', this.currentUser);
@@ -84,6 +86,7 @@ export class UserViewComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy() {
-    // this.activeUserSub.unsubscribe();
+    this.activeUserSub.unsubscribe();
+    this.allUsersSub.unsubscribe();
   }
 }
